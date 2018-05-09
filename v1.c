@@ -46,17 +46,16 @@ int main() {
 			break;
 		case 2:list(author, title, year, count);
 			break;
-		case 3:exit(99); break;
+		case 3:	for (i = 0; i < count; i++) {
+			free(author[i]);
+			free(title[i]);
+		}
+				free(year);
+				free(title);
+				free(author); exit(0); break;
 		}
 		
 	}
-	for (i = 0; i < count; i++) {
-		free(author[i]);
-		free(title[i]);
-	}
-	free(year);
-	free(title);
-	free(author);
 	
 	return 0;
 }
