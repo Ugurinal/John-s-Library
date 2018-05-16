@@ -25,14 +25,13 @@ struct data {
 	data *next;
 };
 
-data *veri;
+data *veri = NULL;
 
 int main() {
 
 	data *temp;
-	data *head = NULL;
+	data *head;
 	int choice;
-	char sec;
 
 	while (1) {
 		temp = (data*)malloc(sizeof(data));
@@ -42,9 +41,9 @@ int main() {
 		switch (choice) {
 		case 1:
 			printf("For book : b \n For magazine : m\n");
-			scanf("%c", &sec);
+			temp->type = getchar();
 			while (getchar() != '\n');
-			switch (sec) {
+			switch (temp->type) {
 			case 'b':
 				printf("Enter name , author , year and isbn : \n");
 				scanf("%20s %20s %d %13s", &temp->un.book.name, &temp->un.book.author, &temp->un.book.year, &temp->un.book.isbn);
@@ -54,10 +53,11 @@ int main() {
 				printf("Enter name , month and year : \n");
 				scanf("%20s %d %d", &temp->un.magazine.name, &temp->un.magazine.month, &temp->un.magazine.year);
 				while (getchar() != '\n');
-				
+
 			}
 			if (veri == NULL) {
 				veri = temp;
+				
 			}
 			else {
 				head = veri;
@@ -71,9 +71,9 @@ int main() {
 		case 2:
 			head = veri;
 			printf("Enter m for magazine b for book\n");
-			scanf("%d", &sec);
+			scanf("%d", &temp->type);
 			while (getchar() != '\n');
-			switch (sec) {
+			switch (temp->type) {
 			case 'b':
 				while (head != NULL) {
 					printf("%s-%s-%d-%s\n", head->un.book.name, head->un.book.author, head->un.book.year, head->un.book.isbn);
